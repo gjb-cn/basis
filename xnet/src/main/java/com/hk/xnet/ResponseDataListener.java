@@ -11,7 +11,7 @@ public interface ResponseDataListener<T> {
     // 写入超时时长
     long WRITE_TIME = 5000l;
     // 任务超时时长
-    long TASK_TIMEOUT = 5000l;
+    long TASK_TIMEOUT = 10 * 1000l;
     // 重试次数 (默认不重试)
     int RETRY_COUNT = 0;
 
