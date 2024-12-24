@@ -32,9 +32,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     if (zbaseMode.isLocalMode) {
         implementation project(path: ':zbase')
     } else {
