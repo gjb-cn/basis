@@ -65,7 +65,7 @@ public class TaskGen {
                 }
             }
         };
-        mTimer.schedule(mTimerTask, 1000 , 1000);
+        mTimer.schedule(mTimerTask, 0 , 1000);
     }
 
 
