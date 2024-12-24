@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':bsbase')
     if (zbaseMode.isLocalMode) {
         implementation project(path: ':zbase')
     } else {
