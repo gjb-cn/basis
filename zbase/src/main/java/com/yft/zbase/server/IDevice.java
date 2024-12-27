@@ -41,4 +41,8 @@ public interface IDevice extends IServerAgent {
      * @return
      */
     boolean saveFlavor(String flavor);
+
+    // 渠道（二渠道名称）， 可能在腾讯平台下推广，但是又细分不同的渠道
+    String getChannel();
+    boolean saveChannel(String channe);
 }

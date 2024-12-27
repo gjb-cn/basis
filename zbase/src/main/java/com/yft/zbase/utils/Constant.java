@@ -32,6 +32,8 @@ public class Constant {
     public final static String PRIVACY = "privacy";
     // 渠道相关
     public final static String FLAVOR_KEY = "flavor";
+    // 渠道下的细分渠道
+    public final static String CHANNEL_KEY = "channel";
 
     // 同意(相机/照片)权限说明
     public final static String CAMERA_STORAGE_PERMISSIONS = "CAMERA_STORAGE_PERMISSIONS";

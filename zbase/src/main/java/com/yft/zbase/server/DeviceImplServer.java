@@ -220,4 +220,17 @@ public class DeviceImplServer implements IDevice {
         }
         return paraMk.encode(Constant.FLAVOR_KEY, flavor);
     }
+
+    @Override
+    public String getChannel() {
+        return paraMk.decodeString(Constant.CHANNEL_KEY);
+    }
+
+    @Override
+    public boolean saveChannel(String channe) {
+        if (TextUtils.isEmpty(channe)) {
+            return false;
+        }
+        return paraMk.encode(Constant.CHANNEL_KEY, channe);
+    }
 }
