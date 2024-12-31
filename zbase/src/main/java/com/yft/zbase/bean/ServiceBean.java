@@ -42,6 +42,15 @@ public class ServiceBean extends KVBean implements Parcelable {
     @SerializedName("realnameUrl")
     private String realnameUrl; // 实名认证告知书
 
+    @SerializedName("serverIps")
+    private List<String> serverIps;
+
+    @SerializedName("svipSupportClient")
+    private String svipSupportClient;
+
+    @SerializedName("vipSupportClient")
+    private String vipSupportClient;
+
     /**
      * {"assignUri":"http://119.91.137.201",
      * "backupUris":["http://119.91.137.201","http://119.91.137.201","http://119.91.137.201"],
@@ -54,6 +63,19 @@ public class ServiceBean extends KVBean implements Parcelable {
 
     public ServiceBean(){
     }
+
+    //        assignUri = in.readString();
+//        block = in.readByte() != 0;
+//        backupUris = in.createStringArrayList();
+//        h5Server = in.readString();
+//        shareServer = in.readString();
+//        customerServiceEmail = in.readString();
+//        customerServiceNumber = in.readString();
+//        privacyAgreementUrl = in.readString();
+//        userAgreementUrl = in.readString();
+//        isSuss = in.readByte() != 0;
+//        serviceLinkUrl = in.readString();
+//        realnameUrl = in.readString();
 
     protected ServiceBean(Parcel in) {
         assignUri = in.readString();
@@ -68,6 +90,9 @@ public class ServiceBean extends KVBean implements Parcelable {
         isSuss = in.readByte() != 0;
         serviceLinkUrl = in.readString();
         realnameUrl = in.readString();
+        serverIps = in.createStringArrayList();
+        svipSupportClient = in.readString();
+        vipSupportClient = in.readString();
     }
 
     @Override
@@ -84,6 +109,9 @@ public class ServiceBean extends KVBean implements Parcelable {
         dest.writeByte((byte) (isSuss ? 1 : 0));
         dest.writeString(serviceLinkUrl);
         dest.writeString(realnameUrl);
+        dest.writeStringList(serverIps);
+        dest.writeString(svipSupportClient);
+        dest.writeString(vipSupportClient);
     }
 
     @Override
@@ -197,5 +225,29 @@ public class ServiceBean extends KVBean implements Parcelable {
 
     public void setRealnameUrl(String realnameUrl) {
         this.realnameUrl = realnameUrl;
+    }
+
+    public List<String> getServerIps() {
+        return serverIps;
+    }
+
+    public void setServerIps(List<String> serverIps) {
+        this.serverIps = serverIps;
+    }
+
+    public String getSvipSupportClient() {
+        return svipSupportClient;
+    }
+
+    public void setSvipSupportClient(String svipSupportClient) {
+        this.svipSupportClient = svipSupportClient;
+    }
+
+    public String getVipSupportClient() {
+        return vipSupportClient;
+    }
+
+    public void setVipSupportClient(String vipSupportClient) {
+        this.vipSupportClient = vipSupportClient;
     }
 }

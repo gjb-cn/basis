@@ -6,6 +6,8 @@ public interface IDevice extends IServerAgent {
      * @return
      */
     String getDeviceId();
+
+    boolean saveSerialNumber(String serialNumber);
     /**
      * 获取状态栏高度
      * @return

@@ -11,8 +11,8 @@ public class WelcomeModel extends BaseModel {
     public void postOpenStart(ResponseDataListener<TargetBean> responseDataListener) {
         TreeMap<String, String> treeMap = new TreeMap<>();
         mNetWork.easyPost(mUser.getBastServiceURL() + InterfacePath.START_PAGE,
-                        getRequestParameter(treeMap),
-                        responseDataListener,
-                        TargetBean.class);
+                getRequestParameter(treeMap),
+                responseDataListener,
+                TargetBean.class);
     }
 }

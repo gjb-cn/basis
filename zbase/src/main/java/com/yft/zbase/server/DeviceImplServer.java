@@ -66,6 +66,11 @@ public class DeviceImplServer implements IDevice {
     }
 
     @Override
+    public boolean saveSerialNumber(String serialNumber) {
+        return paraMk.encode(Constant.PARAMETER_KEY_UUID, serialNumber);
+    }
+
+    @Override
     public int getStatusBarHi() {
         return getStatusBarHeight(mContext);
     }
