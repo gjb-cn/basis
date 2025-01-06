@@ -14,6 +14,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.convert.StringConvert;
 import com.lzy.okgo.cookie.CookieJarImpl;
 import com.lzy.okgo.cookie.store.DBCookieStore;
+import com.lzy.okgo.db.UploadManager;
 import com.lzy.okgo.https.HttpsUtils;
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.lzy.okgo.model.Progress;
@@ -378,7 +379,7 @@ public class XNetImpl implements IXNet {
 
 
     @Override
-    public <T> IXNet updateFile(final String path, final Map<String, String> kv, final File files, final ResponseDataListener listener) {
+    public <T> IXNet updateFile(final String path, final Map<String, String> kv, final File files, final ResponseDataListener listener, final Class<?> aClass) {
         if (OkUpload.getInstance().getTask(path) != null) {
             return this;
         }
@@ -395,7 +396,7 @@ public class XNetImpl implements IXNet {
         OkUpload.request(files.getAbsolutePath(), postRequest)//
                 .extra1(path)//
                 .save()
-                .register(new DesUpLoadListener(listener))
+                .register(new DesUpLoadListener(listener, aClass))
                 .start();
         return this;
     }
@@ -418,8 +419,9 @@ public class XNetImpl implements IXNet {
 
     private class DesUpLoadListener extends UploadListener {
         private ResponseDataListener listener;
+        private Class<?> aClass;
 
-        public DesUpLoadListener(ResponseDataListener tag) {
+        public DesUpLoadListener(ResponseDataListener tag, Class<?> aClass) {
             super(tag);
             this.listener = tag;
         }
@@ -443,6 +445,8 @@ public class XNetImpl implements IXNet {
         public void onFinish(Object o, Progress progress) {
             //LOGE("XNetImpl", "==>" + o.toString());
             this.listener.success(o.toString());
+
+            responseJson(listener, o.toString(), aClass);
         }
 
         @Override

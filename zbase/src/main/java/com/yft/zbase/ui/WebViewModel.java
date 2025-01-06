@@ -36,7 +36,7 @@ public class WebViewModel extends BaseViewModel {
                     getErrorMutableLiveData().postValue(throwable.getMessage());
                 }
             }
-        });
+        }, String.class);
     }
 
     public IPay getPay() {

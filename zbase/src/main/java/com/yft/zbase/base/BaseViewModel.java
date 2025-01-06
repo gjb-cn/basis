@@ -117,7 +117,7 @@ public class BaseViewModel extends ViewModel {
      *
      * @param url
      */
-    public void uploadFile(final String url,final String type, final ResponseDataListener<String> responseDataListener) {
+    public void uploadFile(final String url,final String type, final ResponseDataListener<?> responseDataListener, Class<?> aClass) {
         // 压缩文件
         Luban.with(ZBaseApplication.get())
                 .ignoreBy(150)
@@ -130,7 +130,7 @@ public class BaseViewModel extends ViewModel {
 
                     @Override
                     public void onSuccess(File file) {//压缩成功，拿到压缩的图片，在UI线程
-                        mBaseModel.uploadFile(file, type, responseDataListener);
+                        mBaseModel.uploadFile(file, type, responseDataListener, aClass);
                     }
 
                     @Override

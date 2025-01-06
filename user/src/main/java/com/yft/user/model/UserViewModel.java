@@ -135,7 +135,7 @@ public class UserViewModel extends BaseViewModel {
                     getErrorMutableLiveData().postValue("0");
                 }
             }
-        });
+        }, String.class);
     }
 
 

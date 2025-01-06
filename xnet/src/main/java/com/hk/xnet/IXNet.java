@@ -107,7 +107,7 @@ public interface IXNet {
      * @param <T>
      * @return
      */
-    <T> IXNet updateFile(final String path, final Map<String, String> kv, final File files, final ResponseDataListener listener);
+    <T> IXNet updateFile(final String path, final Map<String, String> kv, final File files, final ResponseDataListener listener, final Class<?> cls);
 
     /**
      * 初始化 （默认配置）

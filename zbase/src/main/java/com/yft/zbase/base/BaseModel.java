@@ -207,7 +207,7 @@ public class BaseModel {
         mNetWork.downLoadFile("http://106.52.81.117/images/flag/xinjiapo.png", responseDataListener);
     }
 
-    public void uploadFile(File file, String type, ResponseDataListener responseDataListener) {
+    public void uploadFile(File file, String type, ResponseDataListener responseDataListener, Class<?> aClass) {
         TreeMap<String, String> treeMap = new TreeMap<>();
         try {
             int last = file.getName().lastIndexOf(".");
@@ -224,7 +224,7 @@ public class BaseModel {
             treeMap.put("module", type);
         }
         // 上传文件
-        mNetWork.updateFile(mUser.getBastServiceURL() + InterfacePath.UPDATE_FILE, getRequestParameter(treeMap), file, responseDataListener);
+        mNetWork.updateFile(mUser.getBastServiceURL() + InterfacePath.UPDATE_FILE, getRequestParameter(treeMap), file, responseDataListener, aClass);
     }
 
 
@@ -295,7 +295,7 @@ public class BaseModel {
 
         @Override
         public String getPromoteChannel() {
-            return iDevice.getFlavor();
+            return iDevice.getChannel();
         }
 
         @Override
