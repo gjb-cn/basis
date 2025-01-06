@@ -444,8 +444,7 @@ public class XNetImpl implements IXNet {
         @Override
         public void onFinish(Object o, Progress progress) {
             //LOGE("XNetImpl", "==>" + o.toString());
-            this.listener.success(o.toString());
-
+            //this.listener.success(o.toString());
             responseJson(listener, o.toString(), aClass);
         }
 
