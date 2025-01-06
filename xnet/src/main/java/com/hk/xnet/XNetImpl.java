@@ -424,6 +424,7 @@ public class XNetImpl implements IXNet {
         public DesUpLoadListener(ResponseDataListener tag, Class<?> aClass) {
             super(tag);
             this.listener = tag;
+            this.aClass = aClass;
         }
 
         @Override
