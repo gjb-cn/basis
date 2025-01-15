@@ -195,10 +195,11 @@ public class BaseModel {
      * @param phone
      * @param responseDataListener
      */
-    public void sendCode(String action,String phone, ResponseDataListener<String> responseDataListener) {
+    public void sendCode(String action, String phone, ResponseDataListener<String> responseDataListener) {
         TreeMap<String, String> treeMap = new TreeMap<>();
         treeMap.put("action", action);
         treeMap.put("phone", phone);
+        // ---
         mNetWork.easyPost(mUser.getBastServiceURL() + InterfacePath.SEND_CODE,
                 getRequestParameter(treeMap), responseDataListener, String.class);
     }
