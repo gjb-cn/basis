@@ -6,10 +6,13 @@ import com.lzy.okgo.utils.OkLogger;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 public class RequestTaskManages {
-    private LinkedList<TaskGen> mTaskLinked = new LinkedList<>();
+    private ConcurrentLinkedQueue<TaskGen> mTaskLinked = new ConcurrentLinkedQueue<>();
+    private final AtomicLong taskIdCounter = new AtomicLong(0);
     private static RequestTaskManages instance;
     private RequestTaskManages(){}
 
@@ -47,11 +50,10 @@ public class RequestTaskManages {
      * @return
      */
     public TaskGen genTask(final long taskId) {
-        List<TaskGen> list = mTaskLinked.stream().filter(taskBean -> taskId == taskBean.getTaskId()).collect(Collectors.toList());
-        if (list !=null && !list.isEmpty()) {
-            return list.get(0);
-        }
-        return null;
+        return mTaskLinked.stream()
+                .filter(taskBean -> taskId == taskBean.getTaskId())
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -62,8 +64,8 @@ public class RequestTaskManages {
        TaskGen taskGen = genTask(taskId);
        if (taskGen != null) {
            taskGen.setCompleteTheRequest(true);
-           if (mTaskLinked.contains(taskGen)) {
-               mTaskLinked.remove(taskGen);
+           boolean removed = mTaskLinked.remove(taskGen);
+           if (removed) {
                OkLogger.d("TaskGen: 停止任务 从集合中移除任务..." + taskGen.getPath());
            } else {
                OkLogger.d("TaskGen: 停止任务 集合中未找到任务" + taskGen.getPath());
@@ -78,10 +80,6 @@ public class RequestTaskManages {
      * @return
      */
     public long genId() {
-        if (mTaskLinked.isEmpty()) {
-            return 0;
-        } else {
-          return (mTaskLinked.getLast().getTaskId() + 1);
-        }
+        return taskIdCounter.incrementAndGet();
     }
 }
