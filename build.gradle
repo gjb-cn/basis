@@ -27,7 +27,7 @@ ext {
     minSdk = 21
     targetSdkVer=32
     compileSdk=32
-    versionCode=10204
-    versionName="1.2.4"
+    versionCode=10205
+    versionName="1.2.5"
     buildToolsVersion="32.0.0"
 }

@@ -304,6 +304,11 @@ public class XNetImpl implements IXNet {
         return this;
     }
 
+    @Override
+    public <T> IXNet downLoadFile(String path, ResponseDataListener<T> responseDataListener) {
+        return downLoadFile(path, "", responseDataListener);
+    }
+
 
     @Override
     public <T> IXNet easyGet(final String url, final ResponseDataListener<T> responseDataListener, final Class<?> cls) {
@@ -402,14 +407,14 @@ public class XNetImpl implements IXNet {
     }
 
 
-    public IXNet downLoadFile(final String path, final ResponseDataListener listener) {
+    public IXNet downLoadFile(final String path, String folder, final ResponseDataListener listener) {
         //这里只是演示，表示请求可以传参，怎么传都行，和okgo使用方法一样
         if (OkDownload.getInstance().getTask(path) != null) {
             return this;
         }
         GetRequest<File> request = OkGo.<File>get(path).tag(path);
         OkDownload.request(path, request)//
-                //.folder(ZBaseApplication.get().getFilesDir().toString())
+                .folder(folder)
                 .save()//
                 .register(new DesListener(listener, path))
                 .start();

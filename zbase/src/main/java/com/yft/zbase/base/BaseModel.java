@@ -13,6 +13,7 @@ import com.hk.xnet.IXNet;
 import com.hk.xnet.RequestUtils;
 import com.hk.xnet.XNetImpl;
 import com.yft.zbase.BuildConfig;
+import com.yft.zbase.ZBaseApplication;
 import com.yft.zbase.bean.AddressBean;
 import com.yft.zbase.bean.DownLoadBean;
 import com.yft.zbase.bean.ServiceBean;
@@ -205,7 +206,7 @@ public class BaseModel {
     }
 
     public void downLoadApk(ResponseDataListener responseDataListener) {
-        mNetWork.downLoadFile("http://106.52.81.117/images/flag/xinjiapo.png", responseDataListener);
+        mNetWork.downLoadFile("http://106.52.81.117/images/flag/xinjiapo.png", ZBaseApplication.get().getFilesDir().toString(),responseDataListener);
     }
 
     public void uploadFile(File file, String type, ResponseDataListener responseDataListener, Class<?> aClass) {

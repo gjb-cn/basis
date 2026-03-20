@@ -92,11 +92,21 @@ public interface IXNet {
     /**
      * 下载文件
      * @param path
+     * @param folder 文件下载路径
      * @param responseDataListener
      * @param <T>
      * @return
      */
-    <T> IXNet downLoadFile(final String path,final ResponseDataListener<T> responseDataListener);
+    <T> IXNet downLoadFile(final String path,final String folder,final ResponseDataListener<T> responseDataListener);
+
+    /**
+     * 使用默认地址
+     * @param path
+     * @param responseDataListener
+     * @return
+     * @param <T>
+     */
+    <T> IXNet downLoadFile(final String path, final ResponseDataListener<T> responseDataListener);
 
     /**
      * 上传文件

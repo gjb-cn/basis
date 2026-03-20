@@ -87,7 +87,7 @@ public class VersionUpdateUtil {
             dialogUpData.show();
         }
 
-        iNetWork.downLoadFile(apdUrl, new ResponseDataListener<String>() {
+        iNetWork.downLoadFile(apdUrl, ZBaseApplication.get().getFilesDir().toString(),new ResponseDataListener<String>() {
             @Override
             public void success(String data) {
                 if (dialogUpData.isShowing() && !isMustUpdate) {
